@@ -1,0 +1,25 @@
+<div class="steps-step step-one">
+    <div class="steps-step-head">
+        <i class="far fa-question-circle steps-step-head-infoIcon js-infoIcon"></i>
+        <!-- <img class="steps-step-head-infoIcon" src="{{ url_for('static', filename='/assets/icons/question.svg') }}" alt="Check logo"> -->
+    </div>
+    <div class="steps-step-sub">
+        <h2 class="steps-step-sub-title">
+            #1 Autorizar permisos
+            {% if authorized == '1' %}   
+                <img class="check-logo" src="{{ url_for('static', filename='/assets/icons/check.svg') }}" alt="Check logo">
+            {% endif %}
+        </h2>
+        <div class="steps-step-sub-content">
+
+            <a class="steps-step-sub-content-button" href="/authorize">
+                <img class="button-logo" src="{{ url_for('static', filename='/assets/icons/google.svg') }}" alt="Google logo">
+                <p class="steps-step-sub-content-button-text"> Autorizar </p>
+            </a>
+        
+        </div>
+    </div>
+    <div class="steps-step-footer">
+        <p class="steps-step-footer-continuar"></p>
+    </div>
+</div>

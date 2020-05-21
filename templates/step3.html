@@ -1,0 +1,24 @@
+<div class="steps-step step-three">
+    <div class="steps-step-head">
+        <i class="far fa-question-circle steps-step-head-infoIcon js-infoIcon"></i>
+        <!-- <img class="steps-step-head-infoIcon" src="{{ url_for('static', filename='/assets/icons/question.svg') }}" alt="Check logo"> -->
+    </div>
+    <div class="steps-step-sub">
+        <h2 class="steps-step-sub-title">
+            #3 Iniciar Whatsapp Crawler 
+            {% if ran=='1' %}
+            <img class="check-logo" src="{{ url_for('static', filename='/assets/icons/check.svg') }}" alt="Check logo">
+            {% endif %}
+        </h2>
+        <div class="steps-step-sub-content">
+
+            <a class="steps-step-sub-content-button special-button" href="/run">
+                <p class="steps-step-sub-content-button-text run"> Iniciar </p>
+            </a>
+        
+        </div>
+    </div>
+    <div class="steps-step-footer">
+        <p class="steps-step-footer-continuar"></p>
+    </div>
+</div>

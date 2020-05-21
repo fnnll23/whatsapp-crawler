@@ -1,0 +1,480 @@
+@import 'reset';
+// @import 'error';
+@import 'login';
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap');
+
+
+@mixin styling($font,
+                $title-font-size,
+                $title-font-color,
+                $title-font-weight,
+                $title-margin-bottom,
+                $text-font-size,
+                $text-font-color,
+                $text-font-weight,
+                $button-width,
+                $button-height,
+                $button-font-size,
+                $button-border,
+                $button-logo-height,
+                $steps-height,
+                $steps-width,
+                $steps-padding,
+                $content-columns-width,
+                $label-svg-size,) {
+    *, *::before, *::after {
+        box-sizing: border-box;
+      }
+
+    // your SCSS here, e.g.
+    .wrapper {
+        background-color:#90d1d7;
+        min-height: 100vh;
+        min-width: 100vw;
+        display: flex;
+
+        .content-wrapper {
+            display: flex;
+            flex-grow: 1;
+            align-self: center;
+            flex-direction: column;
+            align-items: center;
+
+            .footer {
+                
+                .logo-link {
+                    display: flex;
+                    align-items: flex-end;
+                    font-family:  $font;
+                    font-weight: 400;
+                    font-size: 19px;
+                    color: #444;
+                    transform: translateY(4px);
+                    text-decoration: none;
+                    .logo {
+                        width: 140px;
+                        height: auto;
+                        filter: brightness(0%) contrast(50%);
+                    }
+                }
+            }
+            .seps-wrapper{
+                position:relative;
+                .steps {
+                    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.4);
+                    width: $steps-width;
+                    height: $steps-height;
+                    margin: auto;
+                    margin-bottom: 30px;
+                    // padding: $steps-padding;
+                    font-family: $font;
+                    background-color: #fafafa;
+                    border: 3px solid #444;
+                    border-radius: 8px;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-around;
+                    &-step {
+                        display: grid;
+                        grid-template-rows: 15% 70% 15%;
+                        grid-template-columns: 100%;
+                        justify-content: center;
+                        flex-direction: column;
+                        flex-grow:1;
+                        &-head, &-footer{
+                            grid-column-start: 0;
+                            display: flex;
+                            justify-content: flex-end;
+                            align-items: flex-start;
+                            padding: 1rem;
+                            color: #000;
+                            &-infoIcon {
+                                cursor: pointer;
+                                font-size: $title-font-size;
+                                border-radius: 50%;
+                                background-color: #eee;
+                                &:hover {
+
+                                }
+                            }
+                            &-closeIcon {
+                                cursor: pointer;
+                                font-size: $title-font-size;
+                                color: #444;
+                                &:hover {
+                                    color: #000
+                                }
+                            }
+                            &-continuar {
+                                cursor: pointer;
+                                padding-right: 5px;
+                                &:hover {
+                                    color: #000;
+                                    text-decoration: underline;
+                                } 
+                            }
+                        }
+                        &-sub{
+                            grid-column-start: 1;
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: space-around;
+                            align-items: center;
+                            
+                            &-title {
+                                font-size: $title-font-size;
+                                font-weight: $title-font-weight;
+                                color:$title-font-color;
+                                line-height: $title-font-size*2;
+                                text-align: center;
+
+                                // margin-bottom: $title-margin-bottom;
+                                .check-logo {
+                                    width: 20px;
+                                    filter: invert(22%) sepia(90%) saturate(3326%) hue-rotate(114deg) brightness(89%) contrast(102%);
+                                }
+                                .title-error {
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: center;
+                                    
+                                    .emoji {
+                                        margin-left: 0.5rem;
+                                    }
+                                }
+                            }
+
+                            &-content {
+                                display: flex;
+                                justify-content: space-between;
+                                align-items: center;
+                                flex-direction: column;
+                                
+                                &-text {
+                                    width: $content-columns-width;
+                                    font-size: $text-font-size;
+                                    font-weight: $text-font-weight;
+                                    color: $text-font-color;
+                                    line-height: $text-font-size *1.5;
+                                    
+                                }
+                                &-button {
+                                    cursor: pointer;
+                                    align-self: center;
+                                    width: $button-width;
+                                    height: $button-height + $button-border*2; 
+                                    // margin: auto;
+                                    // text-align: center;
+                                    font-size: $button-font-size;
+                                    font-weight: 600;
+                                    color: $text-font-color;
+                                    text-decoration: inherit;
+                                    background-color: inherit;
+                                    border: 2px solid #000;
+                                    border-radius: 6px;
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: center;
+                                    transition: all 0.13s;
+                                    &-text {
+                                        color: inherit;
+                                    
+                                    }
+                                    .button-logo {
+                                        height: $button-logo-height;
+                                        margin-right: 10px;
+                                    }
+                                    &:hover {
+                                        transition: all 0.00s;
+                                        border-bottom: 4px solid #111;
+                                        transform: translateY(-2px);
+                                        // transition: border-bottom transform 0.05s ease-in-out;
+                                        // transition: border-bottom 0.05s ease-in-out;
+                                    }
+                                }
+                                .special-button {
+                                    background-color:#00b0aa;
+                                    border: $button-border solid #000;
+                                    color: #fff;
+                                    transition: all 0.13s;
+                                    &:hover {
+                                        transition: all 0.05s;
+                                        transform: translateY(-2px);
+                                        border-bottom: 4px solid #000;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    .link {
+                        color: #5885c3;
+                    }
+                    
+                    #uploadform {
+                        display: flex;
+                        align-items: flex-end;
+                    }
+                    .file-input__input {
+                        width: 0.1px;
+                        height: 0.1px;
+                        opacity: 0;
+                        overflow: hidden;
+                        position: absolute;
+                        z-index: -1;
+                    }
+                    .file-input__label {
+                        cursor: pointer;
+                        font-size: $text-font-size ;
+                        display: inline-flex;
+                        align-items: flex-start;
+                        font-weight: 700;
+                        color: #444;
+                        margin-right: 15px;
+                        &:hover {
+                            color: #000;
+                        }
+                    }
+                    
+                    .file-input__label svg {
+                        height: $label-svg-size;
+                        margin-right: 4px;
+                    }
+
+                    .fileform-container {
+                        // background-color: tomato;
+                        border: 2px solid #000;
+                        border-radius: 2px;
+                        padding: 0 0  0 10px;
+                        display: flex;
+                        align-items: center;
+                    }
+                            
+                    .file-placeholder{
+                        background-color: inherit;
+                        border: none;
+                        font-size: 12px;
+                    }
+            
+                    input.upload-file {
+                        cursor: pointer;        /* make the cursor like hovering over an <a> element */
+                        background-color:#60c5c2; /* make the button transparent */
+                        border: none;
+                        border-left: 2px solid #000;
+                        color: black;
+                        // font-size: $text-font-size -9; //parece que no agarra font size y tira un error
+                        &:hover {
+                            background-color:#078682;
+                        }
+                    }
+                    /* -----------------------------------------
+                    =CSS3 Loading animations
+                    -------------------------------------------- */
+
+                    /* =Elements style
+                    ---------------------- */
+                    .content {
+                        display: none;
+                        justify-content: center;
+
+                    }
+                    .load-wrapp {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        justify-content: center;
+                    }
+                    
+                    .load-wrapp p {
+                        font-size: 1.5rem;
+                        font-weight: 600;
+                        color: $text-font-color;
+                        padding: 0 0 40px;
+                    }
+                    .load-wrapp:last-child {
+                        margin-right: 0;
+                    }
+                    
+                    .line {
+                        display: inline-block;
+                        width: 15px;
+                        height: 15px;
+                        border-radius: 15px;
+                        background-color: #000;
+                    }
+                    
+                    /* =Animate the stuff
+                    ------------------------ */
+                    .load-3 .line:nth-last-child(1) {
+                        animation: loadingC 0.6s 0.1s linear infinite;
+                    }
+                    .load-3 .line:nth-last-child(2) {
+                        animation: loadingC 0.6s 0.2s linear infinite;
+                    }
+                    .load-3 .line:nth-last-child(3) {
+                        animation: loadingC 0.6s 0.3s linear infinite;
+                    }
+                    
+                    .l-3 {
+                        animation-delay: 0.72s;
+                    }
+                    
+                    @keyframes loadingC {
+                        0% {
+                        transform: translate(0, 0);
+                        }
+                        50% {
+                        transform: translate(0, 15px);
+                        }
+                        100% {
+                        transform: translate(0, 0);
+                        }
+                    }
+
+                    .visible-flex {
+                        display: flex;
+                    }
+                }
+                .infoModal{
+                    display: none;
+                    font-family:  $font;
+                    border-radius: 8px;
+                    background-color: rgba(255, 255, 255, 0.9);
+                    position:absolute;
+                    top: calc(0% + 0.5rem);
+                    left: calc(100% + 1.2rem);
+                    width: 19rem;
+                    padding: 2em 3rem;
+                    color: #000;
+                    font-size: 14px;
+                    font-weight: 400;
+                    .link {
+                        color: #5681bd;
+                        font-weight: 600;
+                    }
+
+                    &::after {
+                        position: absolute;
+                        top: calc(0% + 1.2rem);
+                        right: calc(100%);
+                        width: 0;
+                        border-right: 5px solid rgba(255, 255, 255, 0.9);
+                        border-bottom: 5px solid transparent;
+                        border-top: 5px solid transparent;
+                        content: " ";
+                        font-size: 0;
+                        line-height: 0;
+                      }
+                    // transform: translateY(-50%);
+                }
+                .visible-flex {
+                    display:block;
+                }
+            }
+            .error-modal {
+                box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.4);
+                height: 30rem;
+                width: 60rem;
+                margin: auto;
+                margin-bottom: 30px;
+                padding: $steps-padding;
+                font-family: $font;
+                background-color: #fafafa;
+                border: 3px solid #444;
+                border-radius: 8px;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+            
+                .error {
+                    flex-grow: 1;
+                    display: flex;
+                    align-items: center;
+                    justify-content: flex-start;
+                    background-color: red;
+                    flex-direction: column;
+                    .error-content{
+                        .error-content-text {
+                            flex-grow: 1;
+                            background-color: green;
+                        }
+                    }
+                }
+            }
+        }
+        
+    }    
+}
+
+
+
+@media screen and (max-width: 1500px) {
+    @include styling(
+        // Titles parametrers
+        $title-font-size: 1.5rem,
+        $title-font-color: #203,
+        $title-font-weight: 700,
+        $title-margin-bottom: 3rem,
+
+        // Texts parametrers
+        $text-font-size: 13px,
+        $text-font-color: #000,
+        $text-font-weight: 400,
+
+        //Buttons parameters
+        $button-width: 260px,
+        $button-height: 41px,
+        $button-font-size: 14px,
+        $button-border: 2px,
+        $button-logo-height: 17px,
+
+        // Others
+        $label-svg-size: 13px,
+        $font: 'Inter',
+
+        //Size parameters
+        $steps-height: 22rem,
+        $steps-width: 40rem,
+        $steps-padding: 40px 50px,
+        $content-columns-width: 55%,
+    );
+}
+
+
+@media screen and (min-width: 1501px) {
+    @include styling(
+        // Titles parametrers
+        $title-font-size: 31px,
+        $title-font-color: black,
+        $title-font-weight: 700,
+        $title-margin-bottom: 5rem,
+
+        // Texts parametrers
+        $text-font-size: 14px,
+        $text-font-color: #000,
+        $text-font-weight: 600,
+
+        //Buttons parameters
+        $button-width: 300px,
+        $button-height: 45px,
+        $button-font-size: 17px,
+        $button-border: 2px,
+        $button-logo-height: 18px,
+
+        // Others
+        $label-svg-size: 16px,
+        $font: 'Inter',
+
+        //Wrapper parameters
+        $steps-height: 30rem,
+        $steps-width: 50rem,
+        $steps-padding: 100px,
+        $content-columns-width: 60%,
+    );
+}
+
+// TODO:
+// descargar csv con informe final despues de la corrida: (Si se encontró el contacto en whatsapp o no)
+// agregar links inline
+// agregar barras de carga para run y para upload
+// agregar un check y una x para los estados autorizado y revocado
+// cuando se abre desde un celular inhabilitar los botones

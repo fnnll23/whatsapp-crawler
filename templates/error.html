@@ -1,0 +1,54 @@
+<!-- 
+<div class="wrapper">
+<section class="header">
+    <img class="button-logo" src="{{ url_for('static', filename='/assets/icons/close.svg') }}" alt="csv file logo">
+</section>
+<section class="content">
+    <h1>Encontramos un error</h1>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for msg in messages %}
+            <h2>{{msg}}</h2>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    <h2>nombre del error</h2>
+</section>
+</div> -->
+
+<div class="steps-step step-one">
+    <div class="steps-step-head">
+        <i class="fas fa-times steps-step-head-closeIcon js-infoIcon"></i>
+    </div>
+    <div class="steps-step-sub">
+        <div class="steps-step-sub-title">
+            <div class="title-error">Encontramos un error 😵</div>
+        </div>
+        <div class="steps-step-sub-content">
+
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for msg in messages %}
+                <h2>{{msg}}</h2>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        
+        </div>
+    </div>
+    <div class="steps-step-footer">
+        <p class="steps-step-footer-continuar"></p>
+    </div>
+</div>
+<script src="https://twemoji.maxcdn.com/v/latest/twemoji.min.js" crossorigin="anonymous"></script>
+<script>
+
+    // Seteo el ancho del placeholder del mismo tamaño que su contenido
+    const title = document.querySelectorAll('.steps-step-sub-title')[0];
+    const content = title.textContent;
+    
+    twemoji.parse(title);
+    const img = title.querySelector('img');
+    img.width = 30;
+    
+</script>

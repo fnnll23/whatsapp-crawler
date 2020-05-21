@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Whatsapp Crawler</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='/assets/main.css') }}">
+    <link rel="shortcut icon" href="#" />
+</head>
+
+<body>
+<div class="wrapper">
+    <div class="content-wrapper">
+        <div class="seps-wrapper">
+            <div class="steps">
+
+            {% if step == '1' %}
+                {% if error == '1' %}
+                    {% include 'error.html' %}
+                {% else %}    
+                    {% include 'step1.html' %}
+                {% endif %}
+            {% endif %}
+
+            {% if (step == '2') or (step == '2.0') %}
+                {% if error == '1' %}
+                    {% include 'error.html' %}
+                {% else %}    
+                    {% include 'step2.html' %}
+                {% endif %}
+            {% endif %}
+
+            {% if (step == '2.1') %}
+                {% include 'creating_contacts.html' %}
+            {% endif %}
+
+            {% if step == '3' %}
+                {% if error == '1' %}
+                    {% include 'error.html' %}
+                {% else %}    
+                    {% include 'step3.html' %}
+                {% endif %}
+            {% endif %}
+
+            {% if step == 'error' %}
+                {% include 'error.html' %}
+            {% endif %}
+
+            </div>
+            {% if step == '1' %}
+                {% include 'info1.html' %}
+            {% endif %}
+
+            {% if (step == '2') or (step == '2.0') %}
+                {% include 'info2.html' %}
+            {% endif %}
+
+            {% if step == '3' %}
+                {% include 'info3.html' %}
+            {% endif %}
+        </div>
+        <footer class="footer">
+            
+            <a  class="logo-link" href="https://www.zigla.la/zigla-lab">
+                <p>Powered by</p>
+                <img class="logo" src="{{ url_for('static', filename='/assets/icons/ziglalab.png') }}" alt="Logo Zigla Lab">
+        </footer>
+    </div>  
+</div>
+<script src="https://kit.fontawesome.com/d4b981459a.js" crossorigin="anonymous"></script>
+<script src="https://twemoji.maxcdn.com/v/latest/twemoji.min.js" crossorigin="anonymous"></script>
+<script src="{{ url_for('static', filename='./js/main.js') }}"></script>
+</body>
+</html>
