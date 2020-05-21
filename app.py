@@ -107,6 +107,7 @@ def data():
                     #flash("El archivo subido no es del tipo csv")
                     return redirect(url_for('index'), step='error')        
 
+"""PASO 2: Carga de contactos"""
 @app.route('/creating_contacts', methods=['GET', 'POST'])
 def execute_batch_request(): 
     # Feed that holds the batch request entries.
@@ -204,7 +205,47 @@ def execute_batch_request():
     session['step'] = '3'
     return redirect(url_for('index', step=session['step']))
 
-"""PASO 3: Carga de contactos"""
+
+
+"""PASO 3: QR + Corrida + Borrar contactos"""
+@app.route('/run', methods=['GET', 'POST'])
+def run_crawler():
+    df = pd.DataFrame(flask.session['csv'])
+    lang = 'Spanish'
+
+    # Check platform and browser
+    try:
+        chrome_version = userCheck()
+
+    except ValueError as err:
+        return str(err)
+
+    wp = WhatsappCrawler(lang, chrome_version)
+    wp.open_whatsapp()
+    sleep(15)
+
+    try:
+        wp.contact = "testing"
+        wp.search_contact(testing=True)
+        del wp.contact
+
+    except Exception as err:
+        wp.close()
+        return str(err)
+    
+    else:
+        for i in range(len(df)):
+            wp.contact = df["contacts"][i]
+            #wpc.message = df["messages"][i]
+            try:
+                wp.search_contact()
+                #wpc.send_message()
+            except:
+                continue         
+        wp.close()
+        flask.session['step'] = '4'
+        return redirect(url_for('index', ran=flask.session['step']))
+
 # @app.route('/creating_contacts', methods=['GET', 'POST'])
 # def creating_contacts():
 #     flask.session['step'] = '2.1'
